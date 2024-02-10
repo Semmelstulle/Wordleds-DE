@@ -1,29 +1,29 @@
 #!/bin/zsh
 
-# URL der Datei, die geladen werden soll
+# URL of the remote file
 url="https://raw.githubusercontent.com/davidak/wortliste/master/wortliste.txt"
 
-# Name der Datei, in die der Inhalt gespeichert werden soll
+# Name of the file we put the scraped words in
 output_file="wortliste.txt"
 
-# Lade die Datei herunter
-#curl $url -o $output_file
+# Download file
+curl $url -o $output_file
 
-# Erstelle eine neue Datei für die bearbeiteten Wörter
+# Create the file with the cleared up list
 processed_file="wordleList.txt"
-#> $processed_file # Leert die Datei, falls sie bereits existiert
+#> $processed_file # empties the file if neccessary
 echo "wordleList.txt erstellt bzw geleert"
 
-# Durchlaufe jede Zeile der heruntergeladenen Datei
+# Check every line of the downloaded list
 while IFS= read -r line; do
-  # Ersetze Ä, Ö, Ü und ß
+  # Replace Ä, Ö, Ü and ß
   modified_line=$(echo $line | sed -e 's/Ä/ae/g' -e 's/Ö/oe/g' -e 's/Ü/ue/g' -e 's/ä/ae/g' -e 's/ö/oe/g' -e 's/ü/ue/g' -e 's/ß/ss/g')
   echo "$line modifiziert"
-  # Durchlaufe jedes Wort in der Zeile
+  # Check that modified word again
   for word in $modified_line; do
-    # Check, ob das Wort genau 5 Buchstaben hat
+    # Check it it contains exactly 5 letters
     if [ ${#word} -eq 5 ]; then
-      # Schreibe das Wort in die Datei wordleList.txt
+      # Write to wordleList.txt
       echo $word >> $processed_file
       echo "$word in wordleList.txt geschrieben"
     fi
