@@ -68,7 +68,6 @@ ATOME
 AUGEN
 AUTOR
 AXIOM
-------------------------
 BADEN
 BAHRE
 BANDE
@@ -148,7 +147,6 @@ CLOWN
 COMIC
 COUCH
 CREME
-------------------------
 DACHS
 DAHIN
 DAMEN
